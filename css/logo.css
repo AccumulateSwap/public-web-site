@@ -1,0 +1,18 @@
+.logo{
+    border-radius: 50%;
+    width:100px;
+    height:120px; 
+    padding-top:40px;
+}
+
+.home-main-image{
+
+    display: block;
+    max-width: 100%;
+    max-height: 100%; 
+    top: 0;left: 0;
+    width: auto;  
+    height: auto;
+    border-radius: 10px;
+    padding: 5px;
+}

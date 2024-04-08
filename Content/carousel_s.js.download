@@ -1,0 +1,42 @@
+/* carousel */
+document.addEventListener('DOMContentLoaded', (event) => {
+    let slideIndex = 0;
+    let slides = document.getElementsByClassName("carousel-images")[0].getElementsByTagName("img");
+    let timer = null;
+
+    function showSlides(n) {
+        if (n > slides.length - 1) {slideIndex = 0}
+        if (n < 0) {slideIndex = slides.length - 1}
+
+        for (let slide of slides) {
+            slide.classList.remove('active');
+            slide.style.display = "block"; // Ensure all images are displayed, but not visible
+        }
+        slides[slideIndex].classList.add('active');
+    }
+
+    function moveSlide(n) {
+        clearInterval(timer);
+        showSlides(slideIndex += n);
+        timer = setInterval(function() { showSlides(slideIndex += 1) }, 4000);
+    }
+
+    showSlides(slideIndex);
+    timer = setInterval(function() { showSlides(slideIndex += 1) }, 4000);
+
+    document.querySelector('.prev').addEventListener('click', function() {
+        moveSlide(-1);
+    });
+
+    document.querySelector('.next').addEventListener('click', function() {
+        moveSlide(1);
+    });
+
+    document.querySelector('.carousel').addEventListener('mouseover', function() {
+        clearInterval(timer);
+    });
+
+    document.querySelector('.carousel').addEventListener('mouseout', function() {
+        timer = setInterval(function() { showSlides(slideIndex += 1) }, 4000);
+    });
+});
